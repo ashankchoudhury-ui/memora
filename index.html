@@ -765,6 +765,20 @@
       line-height: 1.6;
     }
 
+    .form-optional {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .section-text {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-block {
+      margin-top: 2rem;
+    }
+
     /* FAQ */
     #faq { background: var(--bg-secondary); }
 
@@ -1157,7 +1171,7 @@
       <div class="ask-layout">
         <div class="fade-in">
           <h2>Remember what you saved. Even when you don't remember where.</h2>
-          <p style="margin-top: 1rem; margin-bottom: 2rem;">Search using natural language. MEMORA understands what you saved and finds it based on meaning, not just keywords.</p>
+          <p class="section-text">Search using natural language. MEMORA understands what you saved and finds it based on meaning, not just keywords.</p>
           <div class="ask-examples">
             <div class="ask-example">
               <div class="ask-example-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></div>
@@ -1241,7 +1255,7 @@
     <div class="container">
       <div class="waitlist-inner fade-in">
         <h2>Give your memory a place to live.</h2>
-        <p style="margin-top: 1rem;">MEMORA is currently in development. Join the early-access list and be among the first to experience a better way to remember everything you save.</p>
+        <p class="section-text">MEMORA is currently in development. Join the early-access list and be among the first to experience a better way to remember everything you save.</p>
 
         <form class="waitlist-form" id="waitlist-form">
           <div class="form-group">
@@ -1249,7 +1263,7 @@
             <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
           </div>
           <div class="form-group">
-            <label for="name">Name <span style="color: var(--text-muted);">(optional)</span></label>
+            <label for="name">Name <span class="form-optional">(optional)</span></label>
             <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name">
           </div>
           <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -1331,8 +1345,8 @@
     <div class="container">
       <div class="final-cta-box fade-in">
         <h2>Stop losing the things you wanted to remember.</h2>
-        <p style="margin-top: 1rem;">Your next great idea might already be sitting in your saved collection.</p>
-        <a href="#waitlist" class="btn btn-primary" style="margin-top: 2rem;">Get Early Access</a>
+        <p>Your next great idea might already be sitting in your saved collection.</p>
+        <a href="#waitlist" class="btn btn-primary">Get Early Access</a>
       </div>
     </div>
   </section>
