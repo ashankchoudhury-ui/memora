@@ -1222,6 +1222,7 @@
             <label for="name">Name <span style="color: var(--text-muted);">(optional)</span></label>
             <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name">
           </div>
+          <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
           <button type="submit" class="form-submit" id="submit-btn">Join the Waitlist</button>
           <div class="form-message" id="form-message"></div>
           <p class="form-privacy">By joining, you agree to receive early-access updates. We respect your privacy and will never share your email.</p>
@@ -1351,6 +1352,10 @@
     const submitBtn = document.getElementById('submit-btn');
     const formMessage = document.getElementById('form-message');
 
+    // Capture source from URL params
+    const urlParams = new URLSearchParams(window.location.search);
+    const source = urlParams.get('source') || urlParams.get('ref') || 'landing-page';
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       submitBtn.disabled = true;
@@ -1360,12 +1365,13 @@
 
       const email = document.getElementById('email').value.trim();
       const name = document.getElementById('name').value.trim();
+      const _honeypot = form.querySelector('[name="_honeypot"]').value.trim();
 
       try {
         const response = await fetch('/api/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, name, source: 'landing-page' })
+          body: JSON.stringify({ email, name, source, _honeypot })
         });
 
         const data = await response.json();
