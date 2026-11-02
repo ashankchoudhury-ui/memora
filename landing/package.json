@@ -1,0 +1,8 @@
+{
+  "name": "memora-landing",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@vercel/blobs": "^1.0.0"
+  }
+}

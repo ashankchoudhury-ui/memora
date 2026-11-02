@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEMORA — Your personal external memory</title>
+  <meta name="description" content="MEMORA is an AI-powered personal knowledge engine. Save anything, remember why it matters, find it when you need it. Join the early-access waitlist.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090B10;
+      --bg-secondary: #11151D;
+      --bg-tertiary: #161B26;
+      --text-primary: #F5F5F5;
+      --text-secondary: #9299A6;
+      --text-muted: #5C6370;
+      --accent: #F59E0B;
+      --accent-dim: rgba(245, 158, 11, 0.15);
+      --accent-glow: rgba(245, 158, 11, 0.3);
+      --border: #1E2430;
+      --border-light: #2A3140;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(2.8rem, 6vw, 5rem); }
+    h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+    h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+    h4 { font-size: clamp(1.1rem, 1.8vw, 1.4rem); }
+
+    p {
+      color: var(--text-secondary);
+      font-size: clamp(1rem, 1.2vw, 1.15rem);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      opacity: 0.8;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+    }
+
+    section {
+      padding: clamp(4rem, 10vw, 8rem) 0;
+      position: relative;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      background: rgba(9, 11, 16, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.85rem;
+      color: var(--bg-primary);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--bg-primary);
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--accent-glow);
+      opacity: 1;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-tertiary);
+      border-color: var(--text-muted);
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 5rem;
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 100%;
+      background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-dim);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title .accent {
+      color: var(--accent);
+      position: relative;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      position: relative;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-mockup {
+      background: var(--bg-tertiary);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .mockup-search {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .mockup-memories {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .mockup-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .mockup-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .mockup-item-text {
+      flex: 1;
+    }
+
+    .mockup-item-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .mockup-item-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .mockup-priority {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .priority-critical { background: rgba(239, 68, 68, 0.15); color: #EF4444; }
+    .priority-important { background: var(--accent-dim); color: var(--accent); }
+    .priority-interesting { background: rgba(59, 130, 246, 0.15); color: #3B82F6; }
+    .priority-casual { background: rgba(107, 114, 128, 0.15); color: #9CA3AF; }
+
+    /* Problem Section */
+    #problem {
+      background: var(--bg-primary);
+    }
+
+    .section-label {
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .section-header {
+      max-width: 700px;
+      margin-bottom: 3rem;
+    }
+
+    .section-header.center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .problem-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: var(--transition);
+    }
+
+    .problem-card:hover {
+      border-color: var(--border-light);
+      transform: translateY(-2px);
+    }
+
+    .problem-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .problem-card h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .problem-card p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    /* Solution Section */
+    #solution {
+      background: var(--bg-secondary);
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .solution-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .solution-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .solution-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .solution-card h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.4rem;
+    }
+
+    .solution-card p {
+      font-size: 0.95rem;
+    }
+
+    /* How It Works */
+    #how-it-works {
+      background: var(--bg-primary);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      counter-reset: step;
+    }
+
+    .step-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .step-card:hover {
+      border-color: var(--border-light);
+      transform: translateY(-2px);
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-card h3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .step-card p {
+      font-size: 0.95rem;
+    }
+
+    /* Priority Section */
+    #priority {
+      background: var(--bg-secondary);
+    }
+
+    .priority-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .priority-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      transition: var(--transition);
+    }
+
+    .priority-card:hover {
+      border-color: var(--border-light);
+      transform: translateY(-2px);
+    }
+
+    .priority-card h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .priority-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .priority-example {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Ask Your Memory */
+    #ask {
+      background: var(--bg-primary);
+    }
+
+    .ask-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 6vw, 4rem);
+      align-items: center;
+    }
+
+    .ask-examples {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .ask-example {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: var(--transition);
+    }
+
+    .ask-example:hover {
+      border-color: var(--accent);
+    }
+
+    .ask-example-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .ask-example p {
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .ask-visual {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+
+    .ask-chat {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .ask-message {
+      max-width: 85%;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .ask-message.user {
+      background: var(--accent);
+      color: var(--bg-primary);
+      align-self: flex-end;
+      font-weight: 500;
+    }
+
+    .ask-message.assistant {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      align-self: flex-start;
+      border: 1px solid var(--border);
+    }
+
+    .ask-message.assistant strong {
+      color: var(--accent);
+    }
+
+    /* Memory That Comes Back */
+    #future {
+      background: var(--bg-secondary);
+    }
+
+    .future-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .future-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: var(--transition);
+    }
+
+    .future-card:hover {
+      border-color: var(--border-light);
+    }
+
+    .future-card h4 {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .future-card p {
+      font-size: 0.95rem;
+    }
+
+    /* Waitlist */
+    #waitlist {
+      background: var(--bg-primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #waitlist::before {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 60%;
+      background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .waitlist-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .waitlist-form {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 5vw, 3rem);
+      margin-top: 2.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.9rem 1.1rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+
+    .form-group input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--accent);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-message {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .form-message.success {
+      display: block;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #22C55E;
+    }
+
+    .form-message.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #EF4444;
+    }
+
+    .form-privacy {
+      margin-top: 1.25rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* FAQ */
+    #faq {
+      background: var(--bg-secondary);
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-question {
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      user-select: none;
+    }
+
+    .faq-question:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .faq-toggle {
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 300;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-answer-inner {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* Final CTA */
+    #final-cta {
+      background: var(--bg-primary);
+      text-align: center;
+    }
+
+    .final-cta-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(3rem, 8vw, 5rem);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-grid,
+      .ask-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .solution-grid,
+      .steps-grid,
+      .future-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .priority-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .priority-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="logo">
+        <div class="logo-icon">M</div>
+        MEMORA
+      </div>
+      <a href="#waitlist" class="nav-cta">Get Early Access</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="fade-in">
+          <div class="hero-badge">✦ Early Access Now Open</div>
+          <h1 class="hero-title">
+            Your internet has a<br>
+            <span class="accent">memory problem.</span>
+          </h1>
+          <p class="hero-subtitle">
+            You save useful things every day. Tutorials, ideas, videos, articles and resources.
+            But when you actually need them, they're nowhere to be found.
+            MEMORA brings everything together, understands what matters to you, and makes your saved knowledge searchable.
+          </p>
+          <div class="hero-actions">
+            <a href="#waitlist" class="btn btn-primary">Get Early Access</a>
+            <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+          </div>
+        </div>
+        <div class="hero-visual fade-in">
+          <div class="hero-mockup">
+            <div class="mockup-search">🔍 Search your memories...</div>
+            <div class="mockup-memories">
+              <div class="mockup-item">
+                <div class="mockup-item-icon">🎥</div>
+                <div class="mockup-item-text">
+                  <div class="mockup-item-title">Building AI Agents with n8n</div>
+                  <div class="mockup-item-meta">YouTube · Saved 2 days ago</div>
+                </div>
+                <span class="mockup-priority priority-important">Important</span>
+              </div>
+              <div class="mockup-item">
+                <div class="mockup-item-icon">📄</div>
+                <div class="mockup-item-text">
+                  <div class="mockup-item-title">React Performance Patterns</div>
+                  <div class="mockup-item-meta">Article · Saved 1 week ago</div>
+                </div>
+                <span class="mockup-priority priority-critical">Critical</span>
+              </div>
+              <div class="mockup-item">
+                <div class="mockup-item-icon">💡</div>
+                <div class="mockup-item-text">
+                  <div class="mockup-item-title">Business idea: AI note-taking app</div>
+                  <div class="mockup-item-meta">Personal Note · Saved 3 days ago</div>
+                </div>
+                <span class="mockup-priority priority-critical">Critical</span>
+              </div>
+              <div class="mockup-item">
+                <div class="mockup-item-icon">📱</div>
+                <div class="mockup-item-text">
+                  <div class="mockup-item-title">Design Systems at Scale</div>
+                  <div class="mockup-item-meta">Instagram · Saved 5 days ago</div>
+                </div>
+                <span class="mockup-priority priority-interesting">Interesting</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section id="problem">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">The Problem</span>
+        <h2>How many useful things have you saved and forgotten?</h2>
+        <p>Your saved collections are becoming enormous libraries of forgotten information.</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card fade-in">
+          <div class="problem-icon">🪦</div>
+          <h4>The Saving Graveyard</h4>
+          <p>You save hundreds of useful things but rarely revisit them. They disappear into your Saved folder forever.</p>
+        </div>
+        <div class="problem-card fade-in">
+          <div class="problem-icon">🔍</div>
+          <h4>Retrieval Failure</h4>
+          <p>You remember what something was about but forget its title, source or location. Searching doesn't help.</p>
+        </div>
+        <div class="problem-card fade-in">
+          <div class="problem-icon">📁</div>
+          <h4>Manual Organization</h4>
+          <p>Creating folders, adding tags and organizing everything manually takes effort you don't have time for.</p>
+        </div>
+        <div class="problem-card fade-in">
+          <div class="problem-icon">🤔</div>
+          <h4>Forgotten Intentions</h4>
+          <p>You saved something because you wanted to do something with it later, but eventually forgot why you saved it.</p>
+        </div>
+        <div class="problem-card fade-in">
+          <div class="problem-icon">📊</div>
+          <h4>Information Overload</h4>
+          <p>You collect more information than you can realistically process. Your library grows faster than your ability to use it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section id="solution">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">The Solution</span>
+        <h2>One memory for everything.</h2>
+        <p>MEMORA combines capture, intelligence and recall into one unified system.</p>
+      </div>
+      <div class="solution-grid">
+        <div class="solution-card fade-in">
+          <div class="solution-icon">📥</div>
+          <h3>Capture Anything</h3>
+          <p>Save links, images, PDFs, screenshots, notes and ideas with a single share. MEMORA accepts almost anything you encounter.</p>
+        </div>
+        <div class="solution-card fade-in">
+          <div class="solution-icon">🧠</div>
+          <h3>Understand Everything</h3>
+          <p>AI processes your saved content — summarizes it, identifies topics, connects related items and remembers what matters to you.</p>
+        </div>
+        <div class="solution-card fade-in">
+          <div class="solution-icon">⚡</div>
+          <h3>Find Anything</h3>
+          <p>Search using what you remember, not exact keywords. Ask your AI memory assistant and get the right result instantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">How It Works</span>
+        <h2>Three steps to a better memory.</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card fade-in">
+          <div class="step-number">1</div>
+          <h3>Save</h3>
+          <p>Share a link, screenshot, document or idea into MEMORA. The capture process is designed to be as simple as a single tap.</p>
+        </div>
+        <div class="step-card fade-in">
+          <div class="step-number">2</div>
+          <h3>Understand</h3>
+          <p>MEMORA processes the available information, generates summaries, identifies topics and remembers why each item matters to you.</p>
+        </div>
+        <div class="step-card fade-in">
+          <div class="step-number">3</div>
+          <h3>Retrieve</h3>
+          <p>Search naturally using what you remember, or ask your AI memory assistant to find exactly what you're looking for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Priority Section -->
+  <section id="priority">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">Memory Priority</span>
+        <h2>Not everything you save matters equally.</h2>
+        <p>Tell MEMORA what's important to you. Your priorities shape how your memory system works.</p>
+      </div>
+      <div class="priority-grid">
+        <div class="priority-card fade-in">
+          <h4>Critical</h4>
+          <p>Absolutely need this. Prominent visibility and higher resurfacing priority.</p>
+          <div class="priority-example">"I must not lose this reference for the project deadline."</div>
+        </div>
+        <div class="priority-card fade-in">
+          <h4>Important</h4>
+          <p>Don't want to forget this. Regular resurfacing and relevant recommendations.</p>
+          <div class="priority-example">"I want to revisit this tutorial before my next sprint."</div>
+        </div>
+        <div class="priority-card fade-in">
+          <h4>Interesting</h4>
+          <p>Worth remembering. Searchable, organized and occasionally resurfaced.</p>
+          <div class="priority-example">"Cool concept — I may want to explore this later."</div>
+        </div>
+        <div class="priority-card fade-in">
+          <h4>Casual</h4>
+          <p>Just saving this for later. Stored without unnecessary notifications.</p>
+          <div class="priority-example">"Interesting, but not urgent. I'll find it when I need it."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ask Your Memory -->
+  <section id="ask">
+    <div class="container">
+      <div class="ask-layout">
+        <div class="fade-in">
+          <span class="section-label">Ask Your Memory</span>
+          <h2>Remember what you saved. Even when you don't remember where.</h2>
+          <p style="margin-top: 1rem; margin-bottom: 2rem;">Search using natural language. MEMORA understands what you saved and finds it based on meaning, not just keywords.</p>
+          <div class="ask-examples">
+            <div class="ask-example">
+              <div class="ask-example-icon">🎥</div>
+              <p>"Find that video about building AI agents using n8n"</p>
+            </div>
+            <div class="ask-example">
+              <div class="ask-example-icon">💡</div>
+              <p>"What business ideas did I save last month?"</p>
+            </div>
+            <div class="ask-example">
+              <div class="ask-example-icon">🌐</div>
+              <p>"Show me the websites I wanted to try for my design project"</p>
+            </div>
+            <div class="ask-example">
+              <div class="ask-example-icon">📚</div>
+              <p>"Find the tutorial I saved about React performance"</p>
+            </div>
+          </div>
+        </div>
+        <div class="ask-visual fade-in">
+          <div class="ask-chat">
+            <div class="ask-message user">Find that video about AI agents using n8n</div>
+            <div class="ask-message assistant">
+              Found <strong>3 related memories</strong>:<br><br>
+              1. "Building AI Agents with n8n" — YouTube, saved 2 days ago — <span class="mockup-priority priority-important">Important</span><br>
+              2. "n8n Workflow Automation Guide" — Article, saved 1 week ago — <span class="mockup-priority priority-interesting">Interesting</span><br>
+              3. "AI Automation Business Ideas" — Personal note, saved 3 days ago — <span class="mockup-priority priority-critical">Critical</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Future Features -->
+  <section id="future">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">Coming Next</span>
+        <h2>Memory that comes back to you.</h2>
+        <p>MEMORA doesn't just store information — it actively helps you use it.</p>
+      </div>
+      <div class="future-grid">
+        <div class="future-card fade-in">
+          <h4>🔄 Contextual Resurfacing</h4>
+          <p>Surface previously saved information when it becomes relevant to what you're working on right now.</p>
+        </div>
+        <div class="future-card fade-in">
+          <h4>🔗 Related Memories</h4>
+          <p>Discover connections between saved resources. AI Agents → n8n → Automation → Business Ideas.</p>
+        </div>
+        <div class="future-card fade-in">
+          <h4>💡 Forgotten Resources</h4>
+          <p>Surface useful resources you saved months ago but completely forgot about.</p>
+        </div>
+        <div class="future-card fade-in">
+          <h4>📅 Daily Memory Feed</h4>
+          <p>Get gentle reminders of potentially useful resources from your saved collection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist Section -->
+  <section id="waitlist">
+    <div class="container">
+      <div class="waitlist-inner fade-in">
+        <span class="section-label">Early Access</span>
+        <h2>Give your memory a place to live.</h2>
+        <p style="margin-top: 1rem;">MEMORA is currently in development. Join the early-access list and be among the first to experience a better way to remember everything you save.</p>
+
+        <form class="waitlist-form" id="waitlist-form">
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="name">Name <span style="color: var(--text-muted);">(optional)</span></label>
+            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name">
+          </div>
+          <button type="submit" class="form-submit" id="submit-btn">Join the Waitlist</button>
+          <div class="form-message" id="form-message"></div>
+          <p class="form-privacy">By joining, you agree to receive early-access updates. We respect your privacy and will never share your email.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">FAQ</span>
+        <h2>Common questions.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            What is MEMORA?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">MEMORA is an AI-powered personal knowledge engine that helps you save, organize and retrieve information from across the internet. It understands what you save, why you save it, and helps you find it when you need it.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            Is MEMORA available yet?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">MEMORA is currently in pre-development validation. We're collecting early-access signups and validating demand before building the full application. Join the waitlist to be among the first to know when early access opens.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            What can I save?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">The planned product supports links, images, screenshots, PDFs, documents, notes and ideas. You'll be able to share content from Instagram, YouTube, articles, and more directly into MEMORA.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            Can I save Instagram posts?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">The intended workflow allows users to share Instagram links into MEMORA. Available metadata and previews will depend on platform restrictions. We never promise unrestricted content extraction from any platform.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            Is MEMORA free?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">The initial product is planned to have a free tier with basic features. Additional premium features may be introduced later. We'll share pricing details closer to launch.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            How does AI help?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">AI will help categorize information, generate summaries, connect related content and retrieve saved information using natural-language queries. You won't need to manually organize every item.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section id="final-cta">
+    <div class="container">
+      <div class="final-cta-box fade-in">
+        <h2>Stop losing the things you wanted to remember.</h2>
+        <p style="margin-top: 1rem;">Your next great idea might already be sitting in your saved collection.</p>
+        <a href="#waitlist" class="btn btn-primary" style="margin-top: 2rem;">Get Early Access</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 MEMORA. All rights reserved. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for fade-in animations
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        // Close all others
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        document.querySelectorAll('.faq-answer').forEach(a => a.style.maxHeight = '0');
+
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Waitlist form submission
+    const form = document.getElementById('waitlist-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formMessage = document.getElementById('form-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Joining...';
+      formMessage.className = 'form-message';
+      formMessage.textContent = '';
+
+      const email = document.getElementById('email').value.trim();
+      const name = document.getElementById('name').value.trim();
+
+      try {
+        const response = await fetch('/api/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name, source: 'landing-page' })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          formMessage.className = 'form-message success';
+          formMessage.textContent = data.message || "You're on the list! We'll be in touch when early access opens.";
+          form.reset();
+        } else {
+          formMessage.className = 'form-message error';
+          formMessage.textContent = data.error || 'Something went wrong. Please try again.';
+        }
+      } catch (err) {
+        formMessage.className = 'form-message error';
+        formMessage.textContent = 'Network error. Please check your connection and try again.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join the Waitlist';
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Navbar background on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(9, 11, 16, 0.95)';
+      } else {
+        nav.style.background = 'rgba(9, 11, 16, 0.85)';
+      }
+    });
+  </script>
+</body>
+</html>
