@@ -19,7 +19,6 @@
       --accent: #8B5CF6;
       --accent-soft: #B9A3FF;
       --accent-dim: rgba(139, 92, 246, 0.12);
-      --accent-glow: rgba(139, 92, 246, 0.25);
       --border: #292638;
       --border-light: #353248;
       --radius: 14px;
@@ -38,17 +37,6 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
-    }
-
-    /* Subtle background texture */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.012) 1px, transparent 0);
-      background-size: 44px 44px;
-      pointer-events: none;
-      z-index: 0;
     }
 
     /* Typography */
@@ -102,14 +90,10 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 clamp(1.25rem, 4vw, 2.5rem);
-      position: relative;
-      z-index: 1;
     }
 
     section {
       padding: clamp(3.5rem, 8vw, 6.5rem) 0;
-      position: relative;
-      z-index: 1;
     }
 
     /* Navigation */
@@ -150,7 +134,7 @@
       width: 30px;
       height: 30px;
       border-radius: 9px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      background: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -158,7 +142,6 @@
       font-weight: 900;
       font-size: 0.8rem;
       letter-spacing: 0;
-      box-shadow: 0 0 22px var(--accent-glow);
     }
 
     .nav-cta {
@@ -197,14 +180,14 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #7C3AED);
+      background: var(--accent);
       color: #fff;
-      box-shadow: 0 8px 30px var(--accent-glow);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(139, 92, 246, 0.35);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
       opacity: 1;
     }
 
@@ -226,12 +209,7 @@
       display: flex;
       align-items: center;
       padding-top: 5.5rem;
-      background:
-        radial-gradient(circle at 78% 18%, rgba(139, 92, 246, 0.07), transparent 45%),
-        radial-gradient(circle at 22% 78%, rgba(185, 163, 255, 0.05), transparent 45%),
-        linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-      position: relative;
-      overflow: hidden;
+      background: var(--bg-primary);
     }
 
     .hero-grid {
@@ -239,33 +217,9 @@
       grid-template-columns: 1fr 1fr;
       gap: clamp(2.5rem, 7vw, 5.5rem);
       align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent-dim);
-      border: 1px solid rgba(139, 92, 246, 0.22);
-      padding: 0.35rem 0.9rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--accent-soft);
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.02em;
     }
 
     .hero-title { margin-bottom: 1.1rem; }
-
-    .hero-title .accent {
-      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
 
     .hero-subtitle {
       font-size: clamp(1.05rem, 1.2vw, 1.2rem);
@@ -282,29 +236,20 @@
     }
 
     .hero-visual {
-      position: relative;
-      background: var(--bg-tertiary);
+      background: var(--bg-secondary);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 1.25rem;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
     }
 
     .mock-card {
-      background: var(--bg-secondary);
+      background: var(--bg-tertiary);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.5rem;
-      transition: var(--transition);
     }
 
     .mock-card + .mock-card { margin-top: 0.9rem; }
-
-    .mock-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-    }
 
     .mock-icon {
       width: 38px;
@@ -341,27 +286,27 @@
     }
 
     .priority-critical {
-      background: rgba(239, 68, 68, 0.12);
+      background: rgba(239, 68, 68, 0.1);
       color: #F87171;
-      border: 1px solid rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.18);
     }
 
     .priority-important {
       background: var(--accent-dim);
       color: var(--accent);
-      border: 1px solid rgba(139, 92, 246, 0.25);
+      border: 1px solid rgba(139, 92, 246, 0.22);
     }
 
     .priority-interesting {
-      background: rgba(59, 130, 246, 0.12);
+      background: rgba(59, 130, 246, 0.1);
       color: #60A5FA;
-      border: 1px solid rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.18);
     }
 
     .priority-casual {
-      background: rgba(107, 114, 128, 0.12);
+      background: rgba(107, 114, 128, 0.1);
       color: #9CA3AF;
-      border: 1px solid rgba(107, 114, 128, 0.2);
+      border: 1px solid rgba(107, 114, 128, 0.18);
     }
 
     /* Section labels */
@@ -402,12 +347,10 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.65rem;
-      transition: var(--transition);
     }
 
     .problem-card:hover {
       border-color: var(--border-light);
-      transform: translateY(-2px);
     }
 
     .problem-icon {
@@ -449,13 +392,10 @@
       border-radius: var(--radius-lg);
       padding: 2.25rem 1.75rem;
       text-align: center;
-      transition: var(--transition);
     }
 
     .solution-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      border-color: var(--border-light);
     }
 
     .solution-icon {
@@ -496,20 +436,17 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 2.25rem 1.75rem;
-      position: relative;
-      transition: var(--transition);
     }
 
     .step-card:hover {
       border-color: var(--border-light);
-      transform: translateY(-2px);
     }
 
     .step-number {
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), #7C3AED);
+      background: var(--accent);
       color: #fff;
       display: flex;
       align-items: center;
@@ -517,7 +454,6 @@
       font-weight: 800;
       font-size: 1.1rem;
       margin-bottom: 1.35rem;
-      box-shadow: 0 0 25px var(--accent-glow);
     }
 
     .step-card h3 {
@@ -545,12 +481,10 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.65rem 1.4rem;
-      transition: var(--transition);
     }
 
     .priority-card:hover {
       border-color: var(--border-light);
-      transform: translateY(-2px);
     }
 
     .priority-card h4 {
@@ -597,11 +531,10 @@
       display: flex;
       align-items: center;
       gap: 0.9rem;
-      transition: var(--transition);
     }
 
     .ask-example:hover {
-      border-color: var(--accent);
+      border-color: var(--border-light);
     }
 
     .ask-example-icon {
@@ -654,7 +587,7 @@
     }
 
     .ask-message.user {
-      background: linear-gradient(135deg, var(--accent), #7C3AED);
+      background: var(--accent);
       color: #fff;
       align-self: flex-end;
       font-weight: 500;
@@ -688,7 +621,6 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.85rem;
-      transition: var(--transition);
     }
 
     .future-card:hover {
@@ -712,28 +644,12 @@
     /* Waitlist */
     #waitlist {
       background: var(--bg-primary);
-      position: relative;
-      overflow: hidden;
-    }
-
-    #waitlist::before {
-      content: "";
-      position: absolute;
-      bottom: -25%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70%;
-      height: 55%;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 65%);
-      pointer-events: none;
     }
 
     .waitlist-inner {
       max-width: 600px;
       margin: 0 auto;
       text-align: center;
-      position: relative;
-      z-index: 1;
     }
 
     .waitlist-form {
@@ -782,7 +698,7 @@
     .form-submit {
       width: 100%;
       padding: 1rem;
-      background: linear-gradient(135deg, var(--accent), #7C3AED);
+      background: var(--accent);
       color: #fff;
       border: none;
       border-radius: 10px;
@@ -791,12 +707,12 @@
       cursor: pointer;
       transition: var(--transition);
       font-family: inherit;
-      box-shadow: 0 8px 25px var(--accent-glow);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     }
 
     .form-submit:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 35px rgba(139, 92, 246, 0.35);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
     }
 
     .form-submit:disabled {
@@ -913,22 +829,9 @@
       padding: clamp(2.5rem, 7vw, 4.5rem);
       max-width: 700px;
       margin: 0 auto;
-      position: relative;
-      overflow: hidden;
     }
 
-    .final-cta-box::before {
-      content: "";
-      position: absolute;
-      top: -30%;
-      right: -20%;
-      width: 55%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .final-cta-box > * { position: relative; z-index: 1; }
+    .final-cta-box > * { }
 
     /* Footer */
     footer {
@@ -936,8 +839,6 @@
       border-top: 1px solid var(--border);
       padding: 2.25rem 0;
       text-align: center;
-      position: relative;
-      z-index: 1;
     }
 
     footer p {
@@ -1062,10 +963,9 @@
     <div class="container">
       <div class="hero-grid">
         <div class="fade-in">
-          <div class="hero-badge"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z"/></svg> Early Access Now Open</div>
           <h1 class="hero-title">
             Your internet has a<br>
-            <span class="accent">memory problem.</span>
+            memory problem.
           </h1>
           <p class="hero-subtitle">
             You save useful things every day. Tutorials, ideas, videos, articles and resources.
