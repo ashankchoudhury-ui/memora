@@ -96,24 +96,6 @@
       padding: clamp(3.5rem, 8vw, 6.5rem) 0;
     }
 
-    #problem { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
-    #solution { padding: clamp(3rem, 7vw, 5.5rem) 0; }
-    #how-it-works { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
-    #priority { padding: clamp(2rem, 5vw, 4rem) 0; }
-    #ask { padding: clamp(3rem, 7vw, 5.5rem) 0; }
-    #future { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
-    #waitlist { padding: clamp(4rem, 9vw, 7rem) 0; }
-    #faq { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
-    #final-cta { padding: clamp(3rem, 7vw, 5.5rem) 0; }
-
-    /* Subtle section dividers */
-    #problem,
-    #how-it-works,
-    #ask,
-    #faq {
-      border-top: 1px solid var(--border);
-    }
-
     /* Navigation */
     nav {
       position: fixed;
@@ -301,6 +283,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.04em;
+      margin-top: 0.5rem;
     }
 
     .priority-critical {
@@ -331,10 +314,6 @@
       margin-top: 0.5rem;
     }
 
-    .ask-example .priority-chip {
-      margin-top: 0.4rem;
-    }
-
     .section-header {
       max-width: 680px;
       margin-bottom: 2.25rem;
@@ -348,97 +327,61 @@
 
     .section-header.center p { margin-left: auto; margin-right: auto; }
 
-    /* Problem Section */
-    #problem { background: var(--bg-primary); }
-
-    .problem-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
+    .section-text {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
     }
 
-    .problem-card {
+    /* Problem + Solution */
+    #problem-solution {
       background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.65rem;
+      border-top: 1px solid var(--border);
     }
 
-    .problem-card:hover {
-      border-color: var(--border-light);
-    }
-
-    .problem-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: var(--accent-dim);
-      border: 1px solid rgba(139, 92, 246, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 0.9rem;
-      font-size: 1.1rem;
-    }
-
-    .problem-card h4 {
-      margin-bottom: 0.4rem;
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
-
-    .problem-card p {
-      font-size: 0.92rem;
-      color: var(--text-secondary);
-    }
-
-    /* Solution Section */
-    #solution { background: var(--bg-secondary); }
-
-    .solution-grid {
+    .problem-solution-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
     }
 
-    .solution-card {
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2.25rem 1.75rem;
-      text-align: center;
+    .problem-text h2 {
+      margin-bottom: 1rem;
     }
 
-    .solution-card:hover {
-      border-color: var(--border-light);
+    .problem-text p {
+      margin-top: 0.75rem;
+      margin-bottom: 1.25rem;
     }
 
-    .solution-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 16px;
-      background: var(--accent-dim);
-      border: 1px solid rgba(139, 92, 246, 0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.35rem;
-      font-size: 1.7rem;
+    .problem-list {
+      list-style: none;
+      padding: 0;
     }
 
-    .solution-card h3 {
-      margin-bottom: 0.65rem;
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-
-    .solution-card p {
-      font-size: 0.95rem;
+    .problem-list li {
+      padding: 0.75rem 0;
       color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .problem-list li:last-child {
+      border-bottom: none;
+    }
+
+    .solution-text h2 {
+      margin-bottom: 1rem;
+    }
+
+    .solution-text p {
+      margin-top: 0.75rem;
+      margin-bottom: 1.25rem;
     }
 
     /* How It Works */
-    #how-it-works { background: var(--bg-primary); }
+    #how-it-works {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+    }
 
     .steps-grid {
       display: grid;
@@ -482,183 +425,10 @@
       color: var(--text-secondary);
     }
 
-    /* Priority Section */
-    #priority { background: var(--bg-secondary); }
-
-    .priority-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.1rem;
-    }
-
-    .priority-card {
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.65rem 1.4rem;
-    }
-
-    .priority-card:hover {
-      border-color: var(--border-light);
-    }
-
-    .priority-card h4 {
-      margin-bottom: 0.45rem;
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
-
-    .priority-card p {
-      font-size: 0.9rem;
-      margin-bottom: 0.75rem;
-      color: var(--text-secondary);
-    }
-
-    .priority-example {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-style: italic;
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* Ask Your Memory */
-    #ask { background: var(--bg-primary); }
-
-    .ask-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2.5rem, 6vw, 4.5rem);
-      align-items: center;
-    }
-
-    .ask-examples {
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-
-    .ask-example {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.15rem 1.35rem;
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-    }
-
-    .ask-example:hover {
-      border-color: var(--border-light);
-    }
-
-    .ask-example-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--accent-dim);
-      border: 1px solid rgba(139, 92, 246, 0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.95rem;
-      flex-shrink: 0;
-    }
-
-    .ask-example-text { flex: 1; }
-
-    .ask-example-text h4 {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.2rem;
-    }
-
-    .ask-example-text p {
-      font-size: 0.88rem;
-      margin: 0;
-      color: var(--text-secondary);
-    }
-
-    .ask-visual {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.75rem;
-    }
-
-    .ask-chat {
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-
-    .ask-message {
-      max-width: 88%;
-      padding: 1rem 1.15rem;
-      border-radius: var(--radius);
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    .ask-message.user {
-      background: var(--accent);
-      color: #fff;
-      align-self: flex-end;
-      font-weight: 500;
-      border-bottom-right-radius: 4px;
-    }
-
-    .ask-message.assistant {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      align-self: flex-start;
-      border: 1px solid var(--border);
-      border-bottom-left-radius: 4px;
-    }
-
-    .ask-message.assistant strong {
-      color: var(--accent-soft);
-      font-weight: 600;
-    }
-
-    /* Future Features */
-    #future { background: var(--bg-secondary); }
-
-    .future-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-    }
-
-    .future-card {
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.85rem;
-    }
-
-    .future-card:hover {
-      border-color: var(--border-light);
-    }
-
-    .future-card h4 {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .future-card p {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-    }
-
     /* Waitlist */
     #waitlist {
-      background: var(--bg-primary);
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
     }
 
     .waitlist-inner {
@@ -668,7 +438,7 @@
     }
 
     .waitlist-form {
-      background: var(--bg-secondary);
+      background: var(--bg-primary);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: clamp(1.75rem, 4vw, 2.5rem);
@@ -770,17 +540,11 @@
       font-weight: 400;
     }
 
-    .section-text {
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .cta-block {
-      margin-top: 2rem;
-    }
-
     /* FAQ */
-    #faq { background: var(--bg-secondary); }
+    #faq {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+    }
 
     .faq-list {
       max-width: 720px;
@@ -847,23 +611,6 @@
       line-height: 1.7;
     }
 
-    /* Final CTA */
-    #final-cta {
-      background: var(--bg-primary);
-      text-align: center;
-    }
-
-    .final-cta-box {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: clamp(2.5rem, 7vw, 4.5rem);
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .final-cta-box > * { }
-
     /* Footer */
     footer {
       background: var(--bg-primary);
@@ -919,7 +666,7 @@
     /* Responsive */
     @media (max-width: 968px) {
       .hero-grid,
-      .ask-layout {
+      .problem-solution-grid {
         grid-template-columns: 1fr;
       }
 
@@ -940,35 +687,12 @@
         justify-content: center;
       }
 
-      .solution-grid,
-      .steps-grid,
-      .future-grid {
+      .steps-grid {
         grid-template-columns: 1fr;
-      }
-
-      .priority-grid {
-        grid-template-columns: repeat(2, 1fr);
       }
     }
 
     @media (max-width: 640px) {
-      .priority-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .ask-message {
-        max-width: 94%;
-      }
-
       .faq-question {
         padding: 1.15rem 1.25rem;
         font-size: 0.95rem;
@@ -978,6 +702,7 @@
 </head>
 <body>
   <a href="#hero" class="skip-link">Skip to main content</a>
+
   <!-- Navigation -->
   <nav id="navbar">
     <div class="nav-inner">
@@ -1038,70 +763,31 @@
     </div>
   </section>
 
-  <!-- Problem Section -->
-  <section id="problem">
+  <!-- Problem + Solution Section -->
+  <section id="problem-solution">
     <div class="container">
-      <div class="section-header center fade-in">
-        <h2>How many useful things have you saved and forgotten?</h2>
-        <p>Your saved collections are becoming enormous libraries of forgotten information.</p>
-      </div>
-      <div class="problem-grid">
-        <div class="problem-card fade-in">
-          <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16"/><path d="M12 2v8"/><path d="M8 6l4-4 4 4"/><path d="M6 12h12"/><path d="M10 12v6"/><path d="M14 12v6"/></svg></div>
-          <h4>The Saving Graveyard</h4>
-          <p>You save hundreds of useful things but rarely revisit them. They disappear into your Saved folder forever.</p>
+      <div class="problem-solution-grid">
+        <div class="problem-text fade-in">
+          <h2>The problem.</h2>
+          <p>
+            Your saved collections are becoming enormous libraries of forgotten information.
+          </p>
+          <ul class="problem-list">
+            <li><strong>Saving graveyard</strong> — You save hundreds of useful things but rarely revisit them.</li>
+            <li><strong>Retrieval failure</strong> — You remember what something was about but forget where it is.</li>
+            <li><strong>Forgotten intentions</strong> — You saved it for a reason, but eventually forgot why.</li>
+          </ul>
         </div>
-        <div class="problem-card fade-in">
-          <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-          <h4>Retrieval Failure</h4>
-          <p>You remember what something was about but forget its title, source or location. Searching doesn't help.</p>
-        </div>
-        <div class="problem-card fade-in">
-          <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
-          <h4>Manual Organization</h4>
-          <p>Creating folders, adding tags and organizing everything manually takes effort you don't have time for.</p>
-        </div>
-        <div class="problem-card fade-in">
-          <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9.5c.6-1.6 1.8-3 3.5-3s2.9 1.4 3.5 3"/><circle cx="12" cy="17" r="0.5" fill="currentColor" stroke="none"/></svg></div>
-          <h4>Forgotten Intentions</h4>
-          <p>You saved something because you wanted to do something with it later, but eventually forgot why you saved it.</p>
-        </div>
-        <div class="problem-card fade-in">
-          <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
-          <h4>Information Overload</h4>
-          <p>You collect more information than you can realistically process. Your library grows faster than your ability to use it.</p>
-        </div>
-        <div class="problem-card fade-in">
-          <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
-          <h4>Fragmented Sources</h4>
-          <p>Your saved content is scattered across Instagram, YouTube, articles, and random folders. No unified view.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Solution Section -->
-  <section id="solution">
-    <div class="container">
-      <div class="section-header center fade-in">
-        <h2>One memory for everything.</h2>
-        <p>MEMORA combines capture, intelligence and recall into one unified system.</p>
-      </div>
-      <div class="solution-grid">
-        <div class="solution-card fade-in">
-          <div class="solution-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-          <h3>Capture Anything</h3>
-          <p>Save links, images, PDFs, screenshots, notes and ideas with a single share. MEMORA accepts almost anything you encounter.</p>
-        </div>
-        <div class="solution-card fade-in">
-          <div class="solution-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18c.6-1.6 1.8-3 3.5-3s2.9 1.4 3.5 3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.9 9.1c.6-1.6 1.8-3 3.5-3s2.9 1.4 3.5 3"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.9 14.9c.6 1.6 1.8 3 3.5 3s2.9-1.4 3.5-3"/><circle cx="12" cy="12" r="3"/></svg></div>
-          <h3>Understand Everything</h3>
-          <p>AI processes your saved content — summarizes it, identifies topics, connects related items and remembers what matters to you.</p>
-        </div>
-        <div class="solution-card fade-in">
-          <div class="solution-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-          <h3>Find Anything</h3>
-          <p>Search using what you remember, not exact keywords. Ask your AI memory assistant and get the right result instantly.</p>
+        <div class="solution-text fade-in">
+          <h2>How MEMORA fixes it.</h2>
+          <p>
+            One unified memory that captures everything, understands what matters, and retrieves it instantly.
+          </p>
+          <ul class="problem-list">
+            <li><strong>Capture anything</strong> — Links, images, PDFs, screenshots, notes and ideas.</li>
+            <li><strong>Understand everything</strong> — AI summarizes, tags and connects related items.</li>
+            <li><strong>Find anything</strong> — Search using natural language, not exact keywords.</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1112,6 +798,7 @@
     <div class="container">
       <div class="section-header center fade-in">
         <h2>Three steps to a better memory.</h2>
+        <p class="section-text">Save anything. Understand what matters. Find it in seconds.</p>
       </div>
       <div class="steps-grid">
         <div class="step-card fade-in">
@@ -1133,124 +820,7 @@
     </div>
   </section>
 
-  <!-- Priority Section -->
-  <section id="priority">
-    <div class="container">
-      <div class="section-header center fade-in">
-        <h2>Not everything you save matters equally.</h2>
-        <p>Tell MEMORA what's important to you. Your priorities shape how your memory system works.</p>
-      </div>
-      <div class="priority-grid">
-        <div class="priority-card fade-in">
-          <h4>Critical</h4>
-          <p>Absolutely need this. Prominent visibility and higher resurfacing priority.</p>
-          <div class="priority-example">"I must not lose this reference for the project deadline."</div>
-        </div>
-        <div class="priority-card fade-in">
-          <h4>Important</h4>
-          <p>Don't want to forget this. Regular resurfacing and relevant recommendations.</p>
-          <div class="priority-example">"I want to revisit this tutorial before my next sprint."</div>
-        </div>
-        <div class="priority-card fade-in">
-          <h4>Interesting</h4>
-          <p>Worth remembering. Searchable, organized and occasionally resurfaced.</p>
-          <div class="priority-example">"Cool concept — I may want to explore this later."</div>
-        </div>
-        <div class="priority-card fade-in">
-          <h4>Casual</h4>
-          <p>Just saving this for later. Stored without unnecessary notifications.</p>
-          <div class="priority-example">"Interesting, but not urgent. I'll find it when I need it."</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ask Your Memory -->
-  <section id="ask">
-    <div class="container">
-      <div class="ask-layout">
-        <div class="fade-in">
-          <h2>Remember what you saved. Even when you don't remember where.</h2>
-          <p class="section-text">Search using natural language. MEMORA understands what you saved and finds it based on meaning, not just keywords.</p>
-          <div class="ask-examples">
-            <div class="ask-example">
-              <div class="ask-example-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></div>
-              <div class="ask-example-text">
-                <h4>Find that video about building AI agents using n8n</h4>
-                <p>YouTube · Saved 2 days ago</p>
-                <span class="priority-chip priority-important">Important</span>
-              </div>
-            </div>
-            <div class="ask-example">
-              <div class="ask-example-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
-              <div class="ask-example-text">
-                <h4>What business ideas did I save last month?</h4>
-                <p>Personal Note · Saved 3 days ago</p>
-                <span class="priority-chip priority-critical">Critical</span>
-              </div>
-            </div>
-            <div class="ask-example">
-              <div class="ask-example-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-              <div class="ask-example-text">
-                <h4>Show me the websites I wanted to try for my design project</h4>
-                <p>Multiple sources · Saved 5 days ago</p>
-                <span class="priority-chip priority-interesting">Interesting</span>
-              </div>
-            </div>
-            <div class="ask-example">
-              <div class="ask-example-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
-              <div class="ask-example-text">
-                <h4>Find the tutorial I saved about React performance</h4>
-                <p>Article · Saved 1 week ago</p>
-                <span class="priority-chip priority-critical">Critical</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="ask-visual fade-in">
-          <div class="ask-chat">
-            <div class="ask-message user">Find that video about AI agents using n8n</div>
-            <div class="ask-message assistant">
-              Found <strong>3 related memories</strong>:<br><br>
-              1. "Building AI Agents with n8n" — YouTube, saved 2 days ago — <span class="priority-chip priority-important">Important</span><br>
-              2. "n8n Workflow Automation Guide" — Article, saved 1 week ago — <span class="priority-chip priority-interesting">Interesting</span><br>
-              3. "AI Automation Business Ideas" — Personal note, saved 3 days ago — <span class="priority-chip priority-critical">Critical</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Future Features -->
-  <section id="future">
-    <div class="container">
-      <div class="section-header center fade-in">
-        <h2>Memory that comes back to you.</h2>
-        <p>MEMORA doesn't just store information — it actively helps you use it.</p>
-      </div>
-      <div class="future-grid">
-        <div class="future-card fade-in">
-          <h4><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Contextual Resurfacing</h4>
-          <p>Surface previously saved information when it becomes relevant to what you're working on right now.</p>
-        </div>
-        <div class="future-card fade-in">
-          <h4><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Related Memories</h4>
-          <p>Discover connections between saved resources. AI Agents → n8n → Automation → Business Ideas.</p>
-        </div>
-        <div class="future-card fade-in">
-          <h4><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg> Forgotten Resources</h4>
-          <p>Surface useful resources you saved months ago but completely forgot about.</p>
-        </div>
-        <div class="future-card fade-in">
-          <h4><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Daily Memory Feed</h4>
-          <p>Get gentle reminders of potentially useful resources from your saved collection.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Waitlist Section -->
+  <!-- Waitlist -->
   <section id="waitlist">
     <div class="container">
       <div class="waitlist-inner fade-in">
@@ -1275,7 +845,7 @@
     </div>
   </section>
 
-  <!-- FAQ Section -->
+  <!-- FAQ -->
   <section id="faq">
     <div class="container">
       <div class="section-header center fade-in">
@@ -1336,17 +906,6 @@
             <div class="faq-answer-inner">AI will help categorize information, generate summaries, connect related content and retrieve saved information using natural-language queries. You won't need to manually organize every item.</div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA -->
-  <section id="final-cta">
-    <div class="container">
-      <div class="final-cta-box fade-in">
-        <h2>Stop losing the things you wanted to remember.</h2>
-        <p>Your next great idea might already be sitting in your saved collection.</p>
-        <a href="#waitlist" class="btn btn-primary">Get Early Access</a>
       </div>
     </div>
   </section>
