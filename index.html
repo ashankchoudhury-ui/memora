@@ -382,6 +382,84 @@
       margin-bottom: 1.25rem;
     }
 
+    .problem-solution-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .problem-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.65rem;
+    }
+
+    .problem-card:hover {
+      border-color: var(--border-light);
+    }
+
+    .problem-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(139, 92, 246, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.9rem;
+      font-size: 1.1rem;
+    }
+
+    .problem-card h4 {
+      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .problem-card p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    .solution-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 1.75rem;
+      text-align: center;
+    }
+
+    .solution-card:hover {
+      border-color: var(--border-light);
+    }
+
+    .solution-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(139, 92, 246, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.35rem;
+      font-size: 1.7rem;
+    }
+
+    .solution-card h3 {
+      margin-bottom: 0.65rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .solution-card p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
     /* How It Works */
     #how-it-works {
       background: var(--bg-primary);
@@ -776,25 +854,61 @@
           <p>
             Your saved collections are becoming enormous libraries of forgotten information.
           </p>
-          <ul class="problem-list">
-            <li><strong>The saving graveyard</strong> — You save hundreds of useful things but rarely revisit them. They disappear into your Saved folder forever.</li>
-            <li><strong>Retrieval failure</strong> — You remember what something was about but forget its title, source or location. Searching doesn't help.</li>
-            <li><strong>Manual organization</strong> — Creating folders, adding tags and organizing everything manually takes effort you don't have time for.</li>
-            <li><strong>Forgotten intentions</strong> — You saved something because you wanted to do something with it later, but eventually forgot why you saved it.</li>
-            <li><strong>Information overload</strong> — You collect more information than you can realistically process. Your library grows faster than your ability to use it.</li>
-            <li><strong>Fragmented sources</strong> — Your saved content is scattered across Instagram, YouTube, articles and random folders. No unified view.</li>
-          </ul>
+          <div class="problem-solution-cards">
+            <div class="problem-card fade-in">
+              <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16"/><path d="M12 2v8"/><path d="M8 6l4-4 4 4"/><path d="M6 12h12"/><path d="M10 12v6"/><path d="M14 12v6"/></svg></div>
+              <h4>The saving graveyard</h4>
+              <p>You save hundreds of useful things but rarely revisit them. They disappear into your Saved folder forever.</p>
+            </div>
+            <div class="problem-card fade-in">
+              <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              <h4>Retrieval failure</h4>
+              <p>You remember what something was about but forget its title, source or location. Searching doesn't help.</p>
+            </div>
+            <div class="problem-card fade-in">
+              <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+              <h4>Manual organization</h4>
+              <p>Creating folders, adding tags and organizing everything manually takes effort you don't have time for.</p>
+            </div>
+            <div class="problem-card fade-in">
+              <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9.5c.6-1.6 1.8-3 3.5-3s2.9 1.4 3.5 3"/><circle cx="12" cy="17" r="0.5" fill="currentColor" stroke="none"/></svg></div>
+              <h4>Forgotten intentions</h4>
+              <p>You saved something because you wanted to do something with it later, but eventually forgot why you saved it.</p>
+            </div>
+            <div class="problem-card fade-in">
+              <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+              <h4>Information overload</h4>
+              <p>You collect more information than you can realistically process. Your library grows faster than your ability to use it.</p>
+            </div>
+            <div class="problem-card fade-in">
+              <div class="problem-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+              <h4>Fragmented sources</h4>
+              <p>Your saved content is scattered across Instagram, YouTube, articles and random folders. No unified view.</p>
+            </div>
+          </div>
         </div>
         <div class="solution-text fade-in">
           <h2>How MEMORA fixes it.</h2>
           <p>
             One unified memory that captures everything, understands what matters, and retrieves it instantly.
           </p>
-          <ul class="problem-list">
-            <li><strong>Capture anything</strong> — Save links, images, PDFs, screenshots, notes and ideas with a single share. MEMORA accepts almost anything you encounter across the internet.</li>
-            <li><strong>Understand everything</strong> — AI processes your saved content: summarizes it, identifies topics, connects related items and remembers what matters to you personally.</li>
-            <li><strong>Find anything</strong> — Search using what you remember, not exact keywords. Ask your AI memory assistant and get the right result instantly.</li>
-          </ul>
+          <div class="problem-solution-cards">
+            <div class="solution-card fade-in">
+              <div class="solution-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+              <h3>Capture anything</h3>
+              <p>Save links, images, PDFs, screenshots, notes and ideas with a single share. MEMORA accepts almost anything you encounter across the internet.</p>
+            </div>
+            <div class="solution-card fade-in">
+              <div class="solution-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18c.6-1.6 1.8-3 3.5-3s2.9 1.4 3.5 3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.9 9.1c.6-1.6 1.8-3 3.5-3s2.9 1.4 3.5 3"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.9 14.9c.6 1.6 1.8 3 3.5 3s2.9-1.4 3.5-3"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <h3>Understand everything</h3>
+              <p>AI processes your saved content: summarizes it, identifies topics, connects related items and remembers what matters to you personally.</p>
+            </div>
+            <div class="solution-card fade-in">
+              <div class="solution-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+              <h3>Find anything</h3>
+              <p>Search using what you remember, not exact keywords. Ask your AI memory assistant and get the right result instantly.</p>
+            </div>
+          </div>
           <p class="text-block">
             The result is a single place where everything you've saved actually becomes useful again.
           </p>
@@ -812,17 +926,17 @@
       </div>
       <div class="steps-grid">
         <div class="step-card fade-in">
-          <div class="step-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+          <div class="step-number">1</div>
           <h3>Save</h3>
           <p>Share a link, screenshot, document or idea into MEMORA. The capture process is designed to be as simple as a single tap.</p>
         </div>
         <div class="step-card fade-in">
-          <div class="step-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18c.6-1.6 1.8-3 3.5-3s2.9 1.4 3.5 3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.9 9.1c.6-1.6 1.8-3 3.5-3s2.9 1.4 3.5 3"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.9 14.9c.6 1.6 1.8 3 3.5 3s2.9-1.4 3.5-3"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <div class="step-number">2</div>
           <h3>Understand</h3>
           <p>MEMORA processes the available information, generates summaries, identifies topics and remembers why each item matters to you.</p>
         </div>
         <div class="step-card fade-in">
-          <div class="step-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div class="step-number">3</div>
           <h3>Retrieve</h3>
           <p>Search naturally using what you remember, or ask your AI memory assistant to find exactly what you're looking for.</p>
         </div>
