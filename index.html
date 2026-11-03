@@ -1167,6 +1167,24 @@
         nav.style.background = 'rgba(9, 9, 15, 0.78)';
       }
     });
+
+    // Lightweight page-view analytics
+    (function() {
+      try {
+        fetch('/api/analytics', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'pageview',
+            path: window.location.pathname,
+            referrer: document.referrer,
+            userAgent: navigator.userAgent
+          })
+        });
+      } catch (e) {
+        // Silently ignore analytics failures
+      }
+    })();
   </script>
 </body>
 </html>
