@@ -836,6 +836,17 @@
     <div class="nav-inner">
       <div class="logo">
         <svg class="logo-mark" viewBox="0 0 120 120" width="32" height="32" aria-hidden="true">
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <rect x="28" y="24" width="16" height="72" rx="8" fill="#8B5CF6" opacity="0.4" filter="url(#glow)"/>
+          <rect x="76" y="24" width="16" height="72" rx="8" fill="#8B5CF6" opacity="0.4" filter="url(#glow)"/>
           <rect x="28" y="24" width="16" height="72" rx="8" fill="#8B5CF6"/>
           <rect x="76" y="24" width="16" height="72" rx="8" fill="#8B5CF6"/>
         </svg>

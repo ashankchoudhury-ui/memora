@@ -1,15 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
   <defs>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000000" flood-opacity="0.25"/>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
   
-  <!-- Logo mark: two rounded vertical bars -->
-  <g filter="url(#shadow)">
-    <rect x="8" y="20" width="36" height="80" rx="18" fill="#8B5CF6"/>
-    <rect x="56" y="20" width="36" height="80" rx="18" fill="#8B5CF6"/>
-  </g>
+  <!-- Glow behind bars -->
+  <rect x="8" y="20" width="36" height="80" rx="18" fill="#8B5CF6" opacity="0.35" filter="url(#glow)"/>
+  <rect x="56" y="20" width="36" height="80" rx="18" fill="#8B5CF6" opacity="0.35" filter="url(#glow)"/>
+  
+  <!-- Main bars -->
+  <rect x="8" y="20" width="36" height="80" rx="18" fill="#8B5CF6"/>
+  <rect x="56" y="20" width="36" height="80" rx="18" fill="#8B5CF6"/>
   
   <!-- Wordmark: MYNTO -->
   <text x="110" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700" font-size="52" fill="#F5F3FF" letter-spacing="-1">MYNTO</text>
