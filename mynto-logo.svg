@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="58" fill="#12121C" stroke="#292638" stroke-width="2"/>
+  
+  <!-- Two vertical rounded bars (pause symbol / memory pause concept) -->
+  <rect x="32" y="28" width="16" height="64" rx="8" fill="#8B5CF6" filter="url(#shadow)"/>
+  <rect x="72" y="28" width="16" height="64" rx="8" fill="#8B5CF6" filter="url(#shadow)"/>
+</svg>
