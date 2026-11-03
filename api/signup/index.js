@@ -73,7 +73,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       ok: true,
-      code: `memora-${Math.random().toString(36).slice(2, 6)}`,
+      code: `mynto-${Math.random().toString(36).slice(2, 6)}`,
       message: "You're on the list! We'll be in touch when early access opens."
     });
 

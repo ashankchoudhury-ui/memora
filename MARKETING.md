@@ -1,20 +1,20 @@
-# MEMORA Marketing Assets
+# MYNTO Marketing Assets
 
 ## Instagram Bio
 
 **Option 1 (Short):**
 ```
-Your internet has a memory problem.
+Your internet has a myntoy problem.
 We're fixing it.
 ↓ Join the waitlist
-memora-landing-sooty.vercel.app
+mynto-landing-sooty.vercel.app
 ```
 
 **Option 2 (Problem-focused):**
 ```
 You save everything.
 You find nothing.
-MEMORA changes that.
+MYNTO changes that.
 ↓ Early access waitlist
 ```
 
@@ -33,18 +33,18 @@ Find it when you need it.
 **Coming Soon Story (use coming-soon-story.png):**
 - Headline: "COMING SOON"
 - Subtext: "Join the waitlist for early access"
-- URL: memora-landing-sooty.vercel.app
+- URL: mynto-landing-sooty.vercel.app
 
 **Problem Story:**
 ```
-Headline: Your internet has a memory problem.
+Headline: Your internet has a myntoy problem.
 Body: You save hundreds of useful things but rarely revisit them.
 CTA: Join the waitlist ↓
 ```
 
 **Solution Story:**
 ```
-Headline: One memory for everything.
+Headline: One myntoy for everything.
 Body: AI that understands what you save and finds it when you need it.
 CTA: Get early access ↓
 ```
@@ -57,13 +57,13 @@ CTA: Get early access ↓
 **Title:** Building a tool for people who save everything but find nothing
 
 **Body:**
-I'm working on MEMORA — an AI-powered personal knowledge engine. The problem I'm solving: we all save hundreds of useful things (articles, videos, tutorials, business ideas) but never actually revisit them. Our saved folders become graveyards of forgotten information.
+I'm working on MYNTO — an AI-powered personal knowledge engine. The problem I'm solving: we all save hundreds of useful things (articles, videos, tutorials, business ideas) but never actually revisit them. Our saved folders become graveyards of forgotten information.
 
-MEMORA captures everything you save, uses AI to understand what matters to you, and lets you retrieve information using natural language instead of exact keywords.
+MYNTO captures everything you save, uses AI to understand what matters to you, and lets you retrieve information using natural language instead of exact keywords.
 
 Currently in early development, collecting early-access signups before building the full product. Would love feedback from this community:
 
-https://memora-landing-sooty.vercel.app
+https://mynto-landing-sooty.vercel.app
 
 Happy to answer questions about the approach or the tech stack.
 
@@ -75,14 +75,14 @@ Happy to answer questions about the approach or the tech stack.
 **Body:**
 Most of us are collectors — we save articles, tutorials, videos, and ideas constantly. But how often do we actually go back to them?
 
-I'm building MEMORA to fix this. It's an AI-powered knowledge engine that:
+I'm building MYNTO to fix this. It's an AI-powered knowledge engine that:
 - Captures links, PDFs, screenshots, notes
 - Understands what each item means to you
 - Surfaces the right information when you need it
 
 Currently validating demand before building. If this sounds useful, I'd appreciate your feedback:
 
-https://memora-landing-sooty.vercel.app
+https://mynto-landing-sooty.vercel.app
 
 ---
 
@@ -90,13 +90,13 @@ https://memora-landing-sooty.vercel.app
 **Title:** Pre-launch: AI-powered knowledge management for digital workers
 
 **Body:**
-I'm developing MEMORA, an AI personal knowledge engine targeting digital learners, freelancers, students, and entrepreneurs. The core insight: people save more information than they can process, and manual organization doesn't scale.
+I'm developing MYNTO, an AI personal knowledge engine targeting digital learners, freelancers, students, and entrepreneurs. The core insight: people save more information than they can process, and manual organization doesn't scale.
 
 The product uses AI to categorize, summarize, and connect saved content. Users can retrieve information using natural language queries.
 
 Currently in pre-development validation phase. Looking for early adopters and feedback:
 
-https://memora-landing-sooty.vercel.app
+https://mynto-landing-sooty.vercel.app
 
 ---
 
@@ -112,12 +112,12 @@ You save:
 - Articles you meant to read
 - Resources you'll never find again
 
-It's not your fault. The tools we use aren't built for memory.
+It's not your fault. The tools we use aren't built for myntoy.
 
-MEMORA is different. It captures everything, understands what matters, and retrieves it instantly.
+MYNTO is different. It captures everything, understands what matters, and retrieves it instantly.
 
 Join the early-access list ↓
-memora-landing-sooty.vercel.app
+mynto-landing-sooty.vercel.app
 ```
 
 ### Post 2 (Solution-focused):
@@ -128,10 +128,10 @@ What if you could talk to your saved collection? 🗣️
 "Show me the websites I saved for my design project"
 "What business ideas did I save last month?"
 
-MEMORA makes this possible. AI-powered memory that actually works.
+MYNTO makes this possible. AI-powered myntoy that actually works.
 
 Early access now open ↓
-memora-landing-sooty.vercel.app
+mynto-landing-sooty.vercel.app
 ```
 
 ### Post 3 (Minimal/Clean):
@@ -140,10 +140,10 @@ Save anything.
 Remember why it matters.
 Find it when you need it.
 
-That's MEMORA in three lines.
+That's MYNTO in three lines.
 
 Early access waitlist is live ↓
-memora-landing-sooty.vercel.app
+mynto-landing-sooty.vercel.app
 ```
 
 ---
@@ -151,10 +151,10 @@ memora-landing-sooty.vercel.app
 ## Coming Soon Text for Instagram Highlight/Bio
 
 ```
-MEMORA
+MYNTO
 Coming 2026
 
-Your personal external memory.
+Your personal external myntoy.
 Save anything. Remember why it matters. Find it when you need it.
 
 ↓ Join waitlist
@@ -164,9 +164,9 @@ Save anything. Remember why it matters. Find it when you need it.
 
 ## SEO Checklist
 
-✅ Title tag: "MEMORA — Your personal external memory"
+✅ Title tag: "MYNTO — Your personal external myntoy"
 ✅ Meta description: 155 characters, includes key value prop
-✅ Canonical URL: https://memora-landing-sooty.vercel.app/
+✅ Canonical URL: https://mynto-landing-sooty.vercel.app/
 ✅ Open Graph tags (Facebook/LinkedIn sharing)
 ✅ Twitter Card tags (large image)
 ✅ Favicon (SVG inline)
